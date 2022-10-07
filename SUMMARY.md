@@ -1,11 +1,10 @@
-# Summary
+# NPUcore操作系统内核构建实践～基础篇
 
-* [Introduction](README.md)
+* [目录](SUMMARY.md)
 * [1.1 内核编译](README.md)
 	* [1.1.1 编译器及NPUcore内核编译过程](P_1/P_1_1.md)
-	* [1.1.2 内核makefile语法](P_1/P_1_1.md)
-	* [1.1.3 makefile文件构建](P_1/P_1_1.md)
-	* [1.1.4 内核编译过程体验](P_1/P_1_1.md)
+	* [1.1.2 makefile文件构建](P_1/P_1_1.md)
+	* [1.1.3 内核编译过程体验](P_1/P_1_1.md)
 * [1.2 QEMU下运行内核](README.md)
 	* [1.2.1 了解QEMU](P_1/P_1_2.md)
 	* [1.2.2 QEMU上运行NPUcore内核](P_1/P_1_2.md)	
