@@ -1,6 +1,7 @@
 # NPUcore操作系统内核构建实践～基础篇
 
 * [目录](SUMMARY.md)
+* [前言](README.md)
 * [1.1 内核编译]()
 	* [1.1.1 编译器及NPUcore内核编译过程](P_1/P_1_1.md)
 	* [1.1.2 makefile文件构建](P_1/P_1_1.md)
