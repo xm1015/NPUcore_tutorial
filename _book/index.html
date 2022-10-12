@@ -280,7 +280,7 @@
                 <a href="P_1/P_1_4.html">
             
                     
-                    1.4.1 多核指令集
+                    1.4.1 RISC-V指令集及Rust语言
             
                 </a>
             
@@ -293,7 +293,7 @@
                 <a href="P_1/P_1_4.html">
             
                     
-                    1.4.2 NPUcore代码树
+                    1.4.2 NPUcore内核功能及结构
             
                 </a>
             
@@ -306,20 +306,7 @@
                 <a href="P_1/P_1_4.html">
             
                     
-                    1.4.3 NPUcore内核功能及结构
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.6.4" data-path="P_1/P_1_4.html">
-            
-                <a href="P_1/P_1_4.html">
-            
-                    
-                    1.4.4 NPUcore内核性能
+                    1.4.3 NPUcore内核构建学习路线
             
                 </a>
             
@@ -378,6 +365,17 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="introduction">Introduction</h1>
+<h1 id="&#x6B22;&#x8FCE;&#x4F7F;&#x7528;npucore">&#x6B22;&#x8FCE;&#x4F7F;&#x7528;NPUcore!</h1>
+<h2 id="&#x7EEA;&#x8BBA;">&#x7EEA;&#x8BBA;</h2>
+<p>&#x8BA1;&#x7B97;&#x673A;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x8BFE;&#x5185;&#x5B9E;&#x9A8C;&#x4F5C;&#x4E3A;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x8BFE;&#x5802;&#x7406;&#x8BBA;&#x6559;&#x5B66;&#x7684;&#x8F85;&#x52A9;&#x90E8;&#x5206;&#x662F;&#x52A0;&#x5F3A;&#x8BA1;&#x7B97;&#x673A;&#x79D1;&#x5B66;&#x4E0E;&#x6280;&#x672F;&#x4E13;&#x4E1A;&#x5B9E;&#x8DF5;&#x7684;&#x91CD;&#x8981;&#x73AF;&#x8282;&#x4E4B;&#x4E00;&#x3002;&#x7531;&#x4E8E;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x81EA;&#x8EAB;&#x7684;&#x5E9E;&#x5927;&#x548C;&#x590D;&#x6742;&#xFF0C;&#x9020;&#x6210;&#x5B66;&#x751F;&#x5728;&#x5B66;&#x8FC7;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x8BFE;&#x7A0B;&#x540E;&#xFF0C;&#x603B;&#x6709;&#x4E00;&#x79CD;&#x201C;&#x96FE;&#x91CC;&#x770B;&#x82B1;&#x201D;&#x7684;&#x611F;&#x89C9;&#xFF0C;&#x5373;&#x53EA;&#x662F;&#x652F;&#x79BB;&#x7834;&#x788E;&#x7684;&#x4E86;&#x89E3;&#x4E86;&#x4E00;&#x4E9B;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5C40;&#x90E8;&#x77E5;&#x8BC6;&#xFF0C;&#x800C;&#x5F88;&#x96BE;&#x5C06;&#x8FD9;&#x4E9B;&#x77E5;&#x8BC6;&#x878D;&#x4F1A;&#x8D2F;&#x901A;&#xFF0C;&#x5BF9;&#x4E8E;&#x8FD0;&#x7528;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x77E5;&#x8BC6;&#x4ECE;&#x4E8B;&#x8BBE;&#x8BA1;&#x548C;&#x5E94;&#x7528;&#x66F4;&#x662F;&#x65E0;&#x4ECE;&#x8C08;&#x8D77;&#x3002;&#x672C;&#x5B9E;&#x9A8C;&#x8BFE;&#x7684;&#x76EE;&#x7684;&#x5C31;&#x662F;&#x529B;&#x56FE;&#x89E3;&#x51B3;&#x4E0A;&#x8FF0;&#x95EE;&#x9898;&#x3002;<br>&#x672C;&#x5B9E;&#x9A8C;&#x8BFE;&#x57FA;&#x4E8E;Sun microsystem&#x516C;&#x53F8;&#x7684;Opensolaris for x86&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5E73;&#x53F0;&#xFF0C;&#x901A;&#x8FC7;Opensolaris&#x63D0;&#x4F9B;&#x7684;Dtrace&#x3001;MDB&#x7B49;&#x5DE5;&#x5177;&#xFF0C;&#x5BF9;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x5185;&#x6838;&#x8FDB;&#x884C;&#x52A8;&#x6001;&#x8DDF;&#x8E2A;&#x3002;&#x5728;&#x4E00;&#x7CFB;&#x5217;&#x7684;&#x5B9E;&#x9A8C;&#x4E2D;&#xFF0C;&#x5B66;&#x751F;&#x901A;&#x8FC7;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5185;&#x6838;&#x4E2D;&#x7684;&#x63A2;&#x9488;&#xFF08;probe&#xFF09;&#xFF0C;&#x6E05;&#x6670;&#x5730;&#x770B;&#x5230;&#x5185;&#x6838;&#x7684;&#x52A8;&#x6001;&#x6620;&#x50CF;&#x3001;&#x51C6;&#x786E;&#x5730;&#x68C0;&#x6D4B;&#x7CFB;&#x7EDF;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x4ECE;&#x800C;&#x4F7F;&#x5B66;&#x751F;&#x52A0;&#x6DF1;&#x5BF9;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7406;&#x8BBA;&#x7684;&#x7406;&#x89E3;&#x3001;&#x63D0;&#x9AD8;&#x548C;&#x52A0;&#x5F3A;&#x4ED6;&#x4EEC;&#x7684;&#x5B66;&#x4E60;&#x5174;&#x8DA3;&#x548C;&#x5B9E;&#x8DF5;&#x80FD;&#x529B;&#x3002;</p>
+<h2 id="&#x8BFE;&#x5185;&#x5B9E;&#x9A8C;&#x8003;&#x6838;&#x65B9;&#x6848;">&#x8BFE;&#x5185;&#x5B9E;&#x9A8C;&#x8003;&#x6838;&#x65B9;&#x6848;</h2>
+<p>&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x8BFE;&#x5185;&#x5B9E;&#x9A8C;&#x8003;&#x6838;&#x6309;&#x7167;&#x9884;&#x4E60;&#x62A5;&#x544A;30%&#x3001;&#x4E0A;&#x673A;&#x5B9E;&#x9A8C;35%&#x3001;&#x5B9E;&#x9A8C;&#x62A5;&#x544A;35%&#x7684;&#x6BD4;&#x4F8B;&#x8FDB;&#x884C;&#x3002;
+&#x9884;&#x4E60;&#x62A5;&#x544A;&#x5185;&#x5BB9;&#x5305;&#x62EC;&#x4E24;&#x90E8;&#x5206;&#xFF0C;&#x4E00;&#x662F;&#x5BF9;&#x76F8;&#x5173;&#x77E5;&#x8BC6;&#x5B66;&#x4E60;&#x7684;&#x4E66;&#x9762;&#x603B;&#x7ED3;&#xFF08;&#x77E5;&#x8BC6;&#x7EFC;&#x8FF0;&#x548C;&#x53C2;&#x8003;&#x6587;&#x732E;&#xFF09;&#xFF1B;&#x4E8C;&#x662F;&#x5BF9;&#x672C;&#x6B21;&#x5B9E;&#x9A8C;&#x7684;&#x5206;&#x6790;&#x62A5;&#x544A;&#xFF08;&#x4E3B;&#x8981;&#x9488;&#x5BF9;&#x6D89;&#x53CA;&#x7B97;&#x6CD5;&#x7684;&#x9898;&#x76EE;&#xFF09;&#x3002;&#x5B9E;&#x9A8C;&#x62A5;&#x544A;&#x5185;&#x5BB9;&#x4E3B;&#x8981;&#x5305;&#x62EC;&#x672C;&#x6B21;&#x5B9E;&#x9A8C;&#x7684;&#x4E0A;&#x673A;&#x7ED3;&#x679C;&#xFF08;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x3001;&#x7A0B;&#x5E8F;&#x6846;&#x56FE;&#x3001;&#x6E90;&#x7A0B;&#x5E8F;&#x6587;&#x6863;&#x3001;&#x8FD0;&#x884C;&#x60C5;&#x51B5;&#x548C;&#x8FC7;&#x7A0B;&#x622A;&#x56FE;&#xFF09;&#x4EE5;&#x53CA;&#x5B9E;&#x9A8C;&#x4E2D;&#x96BE;&#x70B9;&#x5206;&#x6790;&#x548C;&#x5FC3;&#x5F97;&#x3002;</p>
+<h2 id="&#x786C;&#x4EF6;&#x73AF;&#x5883;">&#x786C;&#x4EF6;&#x73AF;&#x5883;</h2>
+<p>80386DX&#x4EE5;&#x4E0A;&#x517C;&#x5BB9;&#x673A;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Intel&#x3001;AMD&#x7CFB;&#x5217;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x4E3B;&#x677F;&#x53EF;&#x4EE5;&#x662F;&#x652F;&#x6301;ISA&#x3001;ESA&#x6216;PCI&#x603B;&#x7EBF;&#x7ED3;&#x6784;&#xFF0C;&#x4E3B;&#x5B58;&#x6700;&#x5C0F;&#x8981;&#x6C42;2MB&#xFF0C;&#x5EFA;&#x8BAE;64MB&#x4EE5;&#x4E0A;&#x3002;&#x786C;&#x76D8;&#x652F;&#x6301;IDE&#x3001;SCSI&#x63A5;&#x53E3;&#x7684;&#x63A7;&#x5236;&#x5668;&#xFF0C;&#x5BB9;&#x91CF;&#x6700;&#x5C0F;&#x4E3A;500MB&#xFF0C;&#x5EFA;&#x8BAE;2GB&#x4EE5;&#x4E0A;&#xFF0C;&#x663E;&#x793A;&#x5668;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;VGA&#x3001;EGA&#x3001;CGA&#x6216;SUPER VGA&#x7684;&#x663E;&#x793A;&#x5361;&#x6216;&#x663E;&#x793A;&#x5668;&#xFF0C;&#x7F51;&#x5361;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5404;&#x79CD;&#x901A;&#x7528;&#x7684;&#x4EE5;&#x592A;&#x7F51;&#x53CA;&#x5C40;&#x57DF;&#x7F51;&#x5361;&#x3002;</p>
+<h2 id="&#x8F6F;&#x4EF6;&#x73AF;&#x5883;">&#x8F6F;&#x4EF6;&#x73AF;&#x5883;</h2>
+<p>&#x8981;&#x6C42;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E3A;Opensolaris&#x3002;
+&#x5B9E;&#x9A8C;&#x5DE5;&#x5177;&#x4E3A;dtrace_lab&#x5B9E;&#x9A8C;&#x5305;&#x548C;OSLab&#x5B9E;&#x9A8C;&#x5E73;&#x53F0;&#x3002;</p>
 
                                 
                                 </section>
@@ -417,7 +415,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"前言","level":"1.2","depth":1,"next":{"title":"1.1 内核编译","level":"1.3","depth":1,"ref":"","articles":[{"title":"1.1.1 编译器及NPUcore内核编译过程","level":"1.3.1","depth":2,"path":"P_1/P_1_1.md","ref":"P_1/P_1_1.md","articles":[]},{"title":"1.1.2 makefile文件构建","level":"1.3.2","depth":2,"path":"P_1/P_1_1.md","ref":"P_1/P_1_1.md","articles":[]},{"title":"1.1.3 内核编译过程体验","level":"1.3.3","depth":2,"path":"P_1/P_1_1.md","ref":"P_1/P_1_1.md","articles":[]}]},"previous":{"title":"目录","level":"1.1","depth":1,"path":"SUMMARY.md","ref":"SUMMARY.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2022-10-06T13:58:05.164Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-10-09T08:23:52.604Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"前言","level":"1.2","depth":1,"next":{"title":"1.1 内核编译","level":"1.3","depth":1,"ref":"","articles":[{"title":"1.1.1 编译器及NPUcore内核编译过程","level":"1.3.1","depth":2,"path":"P_1/P_1_1.md","ref":"P_1/P_1_1.md","articles":[]},{"title":"1.1.2 makefile文件构建","level":"1.3.2","depth":2,"path":"P_1/P_1_1.md","ref":"P_1/P_1_1.md","articles":[]},{"title":"1.1.3 内核编译过程体验","level":"1.3.3","depth":2,"path":"P_1/P_1_1.md","ref":"P_1/P_1_1.md","articles":[]}]},"previous":{"title":"目录","level":"1.1","depth":1,"path":"SUMMARY.md","ref":"SUMMARY.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2022-10-11T11:43:44.395Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-10-11T12:28:43.650Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
